@@ -1,0 +1,7 @@
+get http://localhost:3000/
+
+###
+get http://localhost:3000/checkadmin
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InphYnpvdWJAZ21haWwuY29tIiwiYWRtaW4iOnRydWUsImlhdCI6MTYwOTk3Njg1MX0.izIhTZXe0FAeFC5BXy5yzi7DUGbf4pOl--ye2_MZuJ4
+
