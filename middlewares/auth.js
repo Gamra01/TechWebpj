@@ -1,0 +1,1 @@
+const expressJWT = require('express-jwt');
