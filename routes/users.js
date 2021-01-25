@@ -1,11 +1,14 @@
 const express = require('express');
-const { salam, signup, signin, signout} = require('../controllers/userController');
-const {userSignUpValidator} = require('../middlewares/userValidator')
+const { getOneUser } = require('../controllers/userController');
+const { userById } = require('../middlewares/user')
+
+
 const router = express.Router();
 
-router.get('/',salam );
 
-router.post('/signup', userSignUpValidator, signup);
-router.post('/signin', signin);
-router.get('/signout', signout);
+router.get('/profile/:userId', getOneUser)
+
+router.param('userId', userById)
+
+
 module.exports = router;

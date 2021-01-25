@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const expressValidator = require('express-validator');
 //Import routes
+const authRoutes = require('./routes/auth');
+
 const userRoutes = require('./routes/users');
 
 //config App
-const app = express();
-
 require('dotenv').config();
+const app = express();
 
 //Db MongoDB
 mongoose.connect(process.env.DATABASE, {
@@ -26,7 +27,8 @@ app.use(expressValidator())
 
 
 //Routes Middleware
-app.use('/api/users', userRoutes)
+app.use('/api', authRoutes)
+app.use('/api', userRoutes);
 
 
 
