@@ -6,6 +6,7 @@ const expressValidator = require('express-validator');
 const authRoutes = require('./routes/auth');
 
 const userRoutes = require('./routes/users');
+const categoryRoutes = require('./routes/categories');
 
 //config App
 require('dotenv').config();
@@ -27,8 +28,9 @@ app.use(expressValidator())
 
 
 //Routes Middleware
-app.use('/api', authRoutes)
+app.use('/api', authRoutes);
 app.use('/api', userRoutes);
+app.use('/api/category', categoryRoutes);
 
 
 
