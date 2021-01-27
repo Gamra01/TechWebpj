@@ -5,31 +5,36 @@ exports.createCategory = (req, res) => {
     const category = new Category(req.body);
 
     category.save((err, category) => {
-        if (err){
+         
+        if(err) {
             return res.status(400).json({
-                error:'Bad request !'
+                error: 'bad Request !'
             })
         }
+
         res.json({
-            category: category
+            cartegory: category
         })
     })
-
 
 }
 
 exports.categoryId = (req, res, next, id) => {
 
     Category.findById(id).exec((err, category) => {
-        if(err || !category){
+
+        if(err || !category) {
             return res.status(404).json({
                 error: "Category not found !"
             })
         }
+
         req.category = category;
         next()
     })
-}
+
+} 
+
 
 exports.showCategory = (req, res) => {
 
@@ -40,6 +45,7 @@ exports.showCategory = (req, res) => {
     })
 }
 
+
 exports.updateCategory = (req, res) => {
 
     let category = req.category;
@@ -47,45 +53,52 @@ exports.updateCategory = (req, res) => {
     category.name = req.body.name;
 
     category.save((err, category) => {
-        if(err){
+
+        if(err) {
             return res.status(400).json({
                 error: "bad request !"
             })
         }
+
         res.json({
             category,
-            message: 'category updated'
+            message: 'Category updated '
         })
+
     })
 
 }
+
 
 exports.deleteCategory = (req, res) => {
 
     let category = req.category;
 
-
     category.remove((err, category) => {
-        if(err){
+
+        if(err) {
             return res.status(404).json({
                 error: "category not found !"
             })
         }
+
         res.status(204).json({
-            message: 'category deleted'
+            message: 'Category deleted '
         })
+
     })
 
 }
 
-exports.allCategories = (req, res) =>{
+exports.allCategories = (req, res) => {
 
     Category.find().exec((err, categories) => {
-        if(err) {
+        if(err){
             return res.status(500).json({
                 error: err
             })
         }
+
         res.json({
             categories
         })

@@ -4,11 +4,16 @@ const { userById } = require('../middlewares/user')
 
 const router = express.Router();
 
-const { createProduct, showProduct, productById, removeProduct, updateProduct } = require('../controllers/productController');
+const { relatedProduct, allProducts, createProduct, showProduct, productById, removeProduct, updateProduct } = require('../controllers/productController');
 
 const { requireSignIn, isAuth, isAdmin } = require('../middlewares/auth');
 
+router.get('/', allProducts);
+
 router.get('/:productId', showProduct)
+
+router.get('/related/:productId', relatedProduct)
+
 
 router.post('/create/:userId', [requireSignIn, isAuth, isAdmin], createProduct);
 
