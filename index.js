@@ -2,11 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const expressValidator = require('express-validator');
+
 //Import routes
 const authRoutes = require('./routes/auth');
-
 const userRoutes = require('./routes/users');
 const categoryRoutes = require('./routes/categories');
+const productRoutes = require('./routes/products');
 
 //config App
 require('dotenv').config();
@@ -31,6 +32,7 @@ app.use(expressValidator())
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api/category', categoryRoutes);
+app.use('/api/product', productRoutes);
 
 
 

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema
 
-const productSchema = new mongoose.schema({
+const productSchema = new mongoose.Schema({
     name: {
         type: String,
         require: true,
@@ -15,13 +15,13 @@ const productSchema = new mongoose.schema({
     },
     price: {
         type: Number,
-        require: true,
+        require: true
     },
     quantity: {
-        type: Number,
+        type: Number
     },
     photo: {
-        type: Buffer,
+        data: Buffer,
         contentType: String
     },
     category: {
