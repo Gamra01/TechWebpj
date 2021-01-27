@@ -2,6 +2,7 @@ const Product = require('../models/product');
 const fs = require('fs');
 const Joi = require('joi');
 const formidable = require('formidable');
+const { nextTick } = require('process');
 
 exports.createProduct = (req, res) => {
 
@@ -53,5 +54,29 @@ exports.createProduct = (req, res) => {
                 product
             })
         })
+    })
+}
+
+
+exports.productById = (req, res, next, id) => {
+    
+    Product.findById(id).exec((err, product) => {
+        if(err || !product){
+            return res.status(404).json({
+                error: 'Product not found'
+            })
+        }
+        
+        req.product = product;
+        next()
+    })
+}
+
+exports.showProduct = (req, res) => {
+
+    req.product.photo = undefined;
+
+    res.json({
+        product: req.product
     })
 }
