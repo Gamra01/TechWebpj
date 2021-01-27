@@ -17,3 +17,25 @@ exports.createCategory = (req, res) => {
 
 
 }
+
+exports.categoryId = (req, res, next, id) => {
+
+    Category.findById(id).exec((err, category) => {
+        if(err || !category){
+            return res.status(404).json({
+                error: "Category not found !"
+            })
+        }
+        req.category = category;
+        next()
+    })
+}
+
+exports.showCategory = (req, res) => {
+
+    let category = req.category;
+
+    res.json({
+        category
+    })
+}
